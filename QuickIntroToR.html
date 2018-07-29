@@ -174,6 +174,7 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="#functions">Functions</a><ul>
 <li><a href="#control">Control</a></li>
+<li><a href="#references">References</a></li>
 </ul></li>
 </ul>
 </div>
@@ -254,15 +255,15 @@ v1</code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
 v2</code></pre></div>
-<pre><code> [1] 0.7170104 0.2328642 0.7680737 0.4594846 0.7933536 0.4439798 0.2141979
- [8] 0.2067090 0.6111379 0.9768707</code></pre>
+<pre><code> [1] 0.50911395 0.80626109 0.80217165 0.37190474 0.05545797 0.58760542
+ [7] 0.41214924 0.25135025 0.67329828 0.42298860</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v3 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>),
     <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 v3</code></pre></div>
-<pre><code> [1] &quot;C&quot; &quot;A&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot;</code></pre>
+<pre><code> [1] &quot;G&quot; &quot;A&quot; &quot;G&quot; &quot;A&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;A&quot; &quot;G&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v4 &lt;-<span class="st"> </span>v3 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>)
 v4</code></pre></div>
-<pre><code> [1] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v5 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="dv">2</span>, <span class="ot">TRUE</span>)
 v5</code></pre></div>
 <pre><code>[1] &quot;foo&quot;  &quot;2&quot;    &quot;TRUE&quot;</code></pre>
@@ -367,12 +368,12 @@ $short.velocity
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">12</span>), <span class="dv">4</span>) 
 m</code></pre></div>
 <pre><code>           [,1]       [,2]       [,3]
-[1,] -1.6282912 -1.7224679  0.4155593
-[2,] -0.2206805 -0.4326896 -0.3625068
-[3,]  0.9387935 -0.3933543 -1.2306063
-[4,] -1.2742925 -1.6233776 -1.5363884</code></pre>
+[1,]  0.6922498 -0.8575667 -2.4215350
+[2,]  0.7069854 -0.1487841  0.1836851
+[3,] -0.5945557  0.4016977  1.0311848
+[4,] -1.3613974  1.6299320 -0.6857620</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(m, <span class="dv">2</span>, min)</code></pre></div>
-<pre><code>[1] -1.628291 -1.722468 -1.536388</code></pre>
+<pre><code>[1] -1.3613974 -0.8575667 -2.4215350</code></pre>
 </div>
 </div>
 <div id="functions" class="section level1">
@@ -421,6 +422,12 @@ m</code></pre></div>
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myfun</span>(<span class="dt">x1=</span><span class="dv">0</span>)
 <span class="kw">myfun</span>(<span class="dt">x1=</span><span class="dv">2</span>)</code></pre></div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li><a href="https://www.springer.com/us/book/9780387790534">Introductory Statistics with R, Dalgaard, Peter, Springer</a></li>
+</ul>
 </div>
 </div>
 

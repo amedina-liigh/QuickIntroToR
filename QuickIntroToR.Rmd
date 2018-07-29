@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo=FALSE, eval=TRUE, cache=FALSE, message=FALSE, warning
 R
 ```
 
-* Emacs has a pacakge to communicate with R, Emacs Speaks Statistics
+* Emacs has a package to communicate with R, Emacs Speaks Statistics
 
 * R can be accessed through a Graphic User Interface
 We will be using [Rstudio](https://www.rstudio.com/)
@@ -43,7 +43,7 @@ We will be using [Rstudio](https://www.rstudio.com/)
 Operator      | Description
 ------------- | -------------
 +  | addition
-- | substraction
+- | subtraction
 * | multiplication
 / | division
 ** or ^ | exponential
@@ -60,14 +60,14 @@ A vector contains an index set of values that are all of the same type:
 * complex 
 * character
 
-The numeric type can be further broken down into integer, single, and double types (but this important when making calls to foreign functions, eg. C or Fortran)
+The numeric type can be further broken down into integer, single, and double types (but this important when making calls to foreign functions, e.g. C or FORTRAN)
 
 ##Data Structures
 The principal data structures in R are:
 * vector- array of objects of the same type 
 * matrix- array of vectors
 * list- can contain objects of different types 
-* environment- hashtable 
+* environment- hash table 
 * data.frame-array of vectors, lists or both. 
 * factor- categorical
 * function
@@ -92,11 +92,19 @@ v6 <- c(2, "3")
 v6
 ```
 
+## Install pacakges
+
+For the sake of this course it is required to install some packages.
+```{r, include=TRUE,  eval=FALSE, echo=TRUE, warning=FALSE}
+install.packages("devtools", "roxygen2", "Rcpp", "RcppArmadillo", "knitr")
+install.packages("ISwR")
+
+```
 ##Control Structures
 * if is the most simple control structure, and usage is simple:
 if (cond1=vdd) {cmd1} else {cmd2}
 
-* ifelse, usage: ifelse(prueba, valor-vdd, valor-falso)
+* ifelse, usage: ifelse(test, vaue-true, value-false)
 
 ```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
  if (1 == 0) {  print(1)  } else {
@@ -120,6 +128,7 @@ ifelse(x < 5 | x > 8, x, 0)
 #Cycling
 In R there are three cycling structures.
 
+##Basic cycling commands
 * **while** Usage: while(condition) {...} 
 
 ```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
@@ -143,6 +152,32 @@ lines(x, x^j)
 }
 ```
 
+## Apply
+A common application of loops is to apply a function to each element of a set of values or vectors and collect the results in a single structure. 
+
+In R this is abstracted by the family of apply functions. 
+For example:
+* lapply, returns a list.
+* sapply, simplifies the result to a vector or a matrix if possible.
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+library(ISwR)
+data( thuesen )
+head(thuesen)
+lapply(thuesen, mean, na.rm = T)
+sapply(thuesen, mean, na.rm = T)
+```
+Why these and not explicit loops?
+
+* These functions attach meaningful names to the results
+* When correctly used they tend to be faster
+
+An other function of this family is apply, which allows you to apply a function to the row or the columns of a matrix
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+m <- matrix(rnorm(12), 4) 
+m
+apply(m, 2, min)
+```
 
 #Functions
 
@@ -199,9 +234,7 @@ myfun(x1=2)
 
 ```
 
-#Basics for Package Development
-Packages are one of the great advantages of R, they provide an efficient way to share and mantain code and methods.
-The functions can be private or shared across a comunity.
-Moreover, the packakging system in R has many useful tools to validate the software, for example: To check the documetation exists and is in sync with the code.
+## References
+* [Introductory Statistics with R,  Dalgaard, Peter, Springer]( https://www.springer.com/us/book/9780387790534)
 
 
