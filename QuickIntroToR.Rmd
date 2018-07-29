@@ -1,0 +1,207 @@
+---
+title: "Quick Reminder"
+author: "Alejandra Medina-Rivera"
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+  word_document: default
+---
+
+
+
+```{r knitr setup, include=FALSE,  eval=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo=FALSE, eval=TRUE, cache=FALSE, message=FALSE, warning=FALSE, comment = "")
+```
+
+#Access R
+
+* R can be accessed through the command line 
+
+```{r, include=FALSE,  eval=FALSE, echo=TRUE, warning=FALSE}
+R
+```
+
+* Emacs has a pacakge to communicate with R, Emacs Speaks Statistics
+
+* R can be accessed through a Graphic User Interface
+We will be using [Rstudio](https://www.rstudio.com/)
+
+#Some basic notes
+##Operators in R
+
+Operator      | Description
+------------- | -------------
++  | addition
+- | substraction
+* | multiplication
+/ | division
+** or ^ | exponential
+> | greater than
+>= | greater than or equal to
+== | equal to
+!= | not equal to
+
+#Data Types
+In R, the basic data types are vectors, not scalars
+A vector contains an index set of values that are all of the same type:
+* logical 
+* numeric 
+* complex 
+* character
+
+The numeric type can be further broken down into integer, single, and double types (but this important when making calls to foreign functions, eg. C or Fortran)
+
+##Data Structures
+The principal data structures in R are:
+* vector- array of objects of the same type 
+* matrix- array of vectors
+* list- can contain objects of different types 
+* environment- hashtable 
+* data.frame-array of vectors, lists or both. 
+* factor- categorical
+* function
+Packages as [Bioconductor](https://www.bioconductor.org/) provide other types of data structures.
+
+##Declaring variables
+The operators to create variables are **<-** and **=**
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+v1 <- c(1:10)
+v1
+v2 <- runif(10)
+v2
+v3 <- sample(c("A", "C", "G", "T"),
+    size = 10, replace = TRUE)
+v3
+v4 <- v3 %in% c("A", "G")
+v4
+v5 <- c("foo", 2, TRUE)
+v5
+v6 <- c(2, "3")
+v6
+```
+
+##Control Structures
+* if is the most simple control structure, and usage is simple:
+if (cond1=vdd) {cmd1} else {cmd2}
+
+* ifelse, usage: ifelse(prueba, valor-vdd, valor-falso)
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+ if (1 == 0) {  print(1)  } else {
+print(2) }
+
+x <- 1:10
+ifelse(x < 5 | x > 8, x, 0)
+
+```
+## Input data
+* There are several functions in R to read in data from a file
+    + scan()
+    + read.table()
+    + read.csv()
+    + source().
+
+* Remember, to learn more: help(read.csv)
+* scan() is useful when you don???t know the structure of your data..
+* source() command used to read scripts R and execute them inside the current session.
+
+#Cycling
+In R there are three cycling structures.
+
+* **while** Usage: while(condition) {...} 
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+y <- 12345
+x <- y/2
+x
+while (abs(x * x - y) > 1e-10) 
+{
+  x <- (x + + y/x)/2
+  }
+x
+x^2
+```
+
+
+* **for** Usage: for(variable in sequence) {...} 
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+x <- seq(0, 1, 0.05)
+plot(x, x, ylab = "y", type = "l") > for (j in 2:8) {
+lines(x, x^j)
+}
+```
+
+
+#Functions
+
+* Functions are objects of type function and all functions in R as mean are of the same type.
+* Functions are defined as:
+mifun <- function(arg1, arg2, ...) { What the function will do}
+
+* Functions are called with:
+mifun(arg1 = ..., arg2 = ...)
+
+* Is better if all arguments have a default value ex: arg1 = val.def.
+When a function is called, the arguments can be set in the same order these are defined in the function, or you can use their tag (names)
+
+* Inside the function there can be one or several instructions. 
+* The returned value of a function is the last one to be evaluated or the one defined with return.
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+fact <- function(x = 1) {
+  ret <- 1
+  for (i in 1:x) {
+    ret <- ret *i 
+  }
+  return(c(x,ret))
+}
+fact()
+fact(x=5)
+fact(6)
+```
+
+## Control
+* In R there are three control functions that can be used within function to regulate how they work
+
+    + **return**: specifies the value that has to be returned and ends the function.
+    + **stop**: stops the function and prints an error message.
+    + **warning**: prints a message but doesn't stop the function.
+
+```{r, include=TRUE,  eval=TRUE, echo=TRUE, warning=FALSE}
+myfun <- function(x1){
+  if (x1 > 0) {
+    print (x1)
+    }
+else if (x1 == 0) {
+  warning("Value must be > 0")
+  }
+else{
+  stop ("There is a problem, x1 < 0 ")
+  }
+}
+```
+```{r, include=TRUE,  eval=FALSE, echo=TRUE, warning=FALSE}
+
+myfun(x1=0)
+myfun(x1=2)
+
+```
+
+#Basics for Package Development
+Packages are one of the great advantages of R, they provide an efficient way to share and mantain code and methods.
+The functions can be private or shared across a comunity.
+Moreover, the packakging system in R has many useful tools to validate the software, for example: To check the documetation exists and is in sync with the code.
+
+
